@@ -1,0 +1,49 @@
+name: cassandra_cluster
+services:
+  nodo1:
+    image: cassandra
+    container_name: nodo1
+    environment:
+      - CASSANDRA_CLUSTER_NAME=ayudantia
+      - CASSANDRA_SEEDS=nodo1
+      - HEAP_NEWSIZE=128M
+      - MAX_HEAP_SIZE=2048M
+    ports:
+      - "7001:9042"
+    networks:
+      - cassandra_network
+
+  nodo2:
+    image: cassandra
+    container_name: nodo2
+    environment:
+      - CASSANDRA_CLUSTER_NAME=ayudantia
+      - CASSANDRA_SEEDS=nodo1
+      - HEAP_NEWSIZE=128M
+      - MAX_HEAP_SIZE=2048M
+    ports:
+      - "7002:9042"
+    depends_on:
+      - nodo1
+    networks:
+      - cassandra_network
+
+  nodo3:
+    image: cassandra
+    container_name: nodo3
+    environment:
+      - CASSANDRA_CLUSTER_NAME=ayudantia
+      - CASSANDRA_SEEDS=nodo1 
+      - HEAP_NEWSIZE=128M
+      - MAX_HEAP_SIZE=2048M
+    ports:
+      - "7003:9042"
+    depends_on:
+      - nodo1
+    networks:
+      - cassandra_network
+
+networks:
+  cassandra_network:
+    driver: bridge
+    name: cassandra_network

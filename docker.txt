@@ -1,0 +1,14 @@
+#############################################
+
+cd cassandra-cluster
+
+docker-compose up -d
+
+docker exec -it nodo1 cqlsh
+
+#############################################
+
+CREATE KEYSPACE universia
+WITH replication = {'class': 'SimpleStrategy', 'replication_factor': 3};
+
+USE universia;

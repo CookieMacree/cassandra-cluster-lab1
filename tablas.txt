@@ -1,0 +1,71 @@
+###############TABLA 1#####################
+
+USE universia;
+
+CREATE TABLE medicina_ordenada_por_periodo (
+    carrera text,
+    periodo int,
+    cedula bigint,
+    sexo text,
+    preferencia int,
+    facultad text,
+    puntaje int,
+    grupo_depen text,
+    region text,
+    latitud double,
+    longitud double,
+    ptje_nem int,
+    psu_promlm int,
+    pace text,
+    gratuidad text,
+    PRIMARY KEY (carrera, periodo, cedula)
+) WITH CLUSTERING ORDER BY (periodo ASC, cedula ASC);
+
+###############TABLA 2#####################
+
+CREATE TABLE informatica_maule_ordenada (
+    region text,
+    carrera text,
+    periodo int,
+    cedula bigint,
+    sexo text,
+    preferencia int,
+    facultad text,
+    puntaje int,
+    grupo_depen text,
+    latitud double,
+    longitud double,
+    ptje_nem int,
+    psu_promlm int,
+    pace text,
+    gratuidad text,
+    PRIMARY KEY ((region, carrera), periodo, cedula)
+) WITH CLUSTERING ORDER BY (periodo ASC, cedula ASC);
+
+###############TABLA 3#####################
+
+CREATE TABLE salud_ordenada_por_puntaje (
+    facultad text,
+    puntaje int,
+    cedula bigint,
+    carrera text,
+    sexo text,
+    preferencia int,
+    grupo_depen text,
+    region text,
+    latitud double,
+    longitud double,
+    ptje_nem int,
+    psu_promlm int,
+    pace text,
+    gratuidad text,
+    periodo int,
+    PRIMARY KEY (facultad, puntaje, cedula)
+) WITH CLUSTERING ORDER BY (puntaje ASC, cedula ASC);
+
+
+
+
+
+
+
